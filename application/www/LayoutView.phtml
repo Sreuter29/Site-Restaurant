@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>3WA Restaurant</title>
+
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/normalize-3.0.3.min.css">
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/font-awesome-4.3.0.min.css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Oleo+Script+Swash+Caps|Karla">
+
+    <!-- Feuilles de styles de l'application -->
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/3wa-resto.css">
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-button.css">
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-form.css">
+    <link rel="stylesheet" href="<?= $wwwUrl ?>/css/ui-table.css">
+
+    <!-- Librairie jQuery -->
+    <script src="http://code.jquery.com/jquery-2.1.0.min.js"></script>
+    <script src="http://code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+
+    <!-- JavaScript de l'application -->
+    <script crossorigin="anonymous" src="https://polyfill.io/v3/polyfill.min.js?features=es6%2CArray.isArray%2CArray.of%2CArray.from%2CArray.prototype.filter%2CArray.prototype.find%2CArray.prototype.findIndex%2CArray.prototype.forEach%2CArray.prototype.includes%2CArray.prototype.indexOf%2CArray.prototype.keys%2CArray.prototype.lastIndexOf%2CArray.prototype.map%2CArray.prototype.reduce%2CArray.prototype.some%2CArray.prototype.sort%2CDate.now%2CElement.prototype.after%2CElement.prototype.append%2CElement.prototype.before%2CElement.prototype.classList%2CElement.prototype.cloneNode%2CElement.prototype.nextElementSibling%2CElement.prototype.placeholder%2CElement.prototype.previousElementSibling%2CElement.prototype.remove%2CElement.prototype.replaceWith%2CElement.prototype.scroll%2CElement.prototype.scrollBy%2CElement.prototype.scrollIntoView%2CElement.prototype.toggleAttribute%2CHTMLDocument%2CJSON%2CMap%2CMath.trunc%2CNumber.isInteger%2CNumber.isFinite%2CNumber.isNaN%2CNumber.parseFloat%2CNumber.parseInt%2CObject.assign%2CObject.create%2CObject.keys%2CObject.values%2CPromise%2CPromise.prototype.finally%2CString.prototype.fontcolor%2CString.prototype.fontsize%2CString.prototype.includes%2CString.prototype.italics%2CString.prototype.link%2CString.prototype.replaceAll%2CString.prototype.trim%2CWindow%2CXMLHttpRequest%2Cdocument%2Cdocument.getElementsByClassName%2Cdocument.querySelector%2Cdocument.visibilityState%2Cfetch%2CgetComputedStyle%2CinnerHeight%2CinnerWidth%2CpageXOffset%2CpageYOffset%2CrequestAnimationFrame%2Cscroll%2CscrollBy%2CscrollIntoView%2CscrollX%2CscrollY%2Csmoothscroll%2Cviewport%2Cwindow.scroll%2Cwindow.scrollBy" defer></script>
+    <script src="<?= $wwwUrl ?>/js/utilities.js"></script>
+    <script src="<?= $wwwUrl ?>/js/classes/FormValidator.class.js"></script>
+</head>
+<body>
+
+    <!-- En-tête commune -->
+    <header>
+        <h1>
+            <a href="<?= $requestUrl ?>">
+                <img src="<?= $wwwUrl ?>/images/logo.gif" height="63" width="57" alt="3WA Restaurant">Restaurant - Made In America !
+            </a>
+        </h1>
+    </header>
+
+    <!-- Interface utilisateur -->
+    <nav class="user-interface">
+        <ul class="link-list">
+            <?php if($userSession->isAuthenticated() == true): ?>
+                <li>
+                    <a class="button button-primary" href="<?= $requestUrl ?>/booking">Réserver</a>
+                    <a class="button button-primary" href="<?= $requestUrl ?>/order">Commander</a>
+                </li>
+                <li class="layout-right">
+                    <p class="welcome">Bonjour <strong><?= $userSession->getFullName() ?></strong> !</p>
+                    <a class="button button-primary" href="<?= $requestUrl ?>/user/logout">Déconnexion</a>
+                </li>
+            <?php else: ?>
+                <li>
+                    <a class="button button-primary" href="<?= $requestUrl ?>/user">Créer un compte</a>
+                </li>
+                <li class="layout-right">
+                    <a class="button button-primary" href="<?= $requestUrl ?>/user/login">Connexion</a>
+                </li>
+            <?php endif; ?>
+        </ul>
+    </nav>
+
+    <main>
+        <!-- Affichage du template lié à la vue -->
+        <?php include $this->viewData['template'] ?>
+    </main>
+
+    <!-- Pied de page commun -->
+    <footer>
+        <ul class="link-list">
+            <li><img src="<?= $wwwUrl ?>/images/payment/visa.png" alt="Visa"></li>
+            <li><img src="<?= $wwwUrl ?>/images/payment/mastercard.png" alt="MasterCard"></li>
+            <li><img src="<?= $wwwUrl ?>/images/payment/paypal.png" alt="PayPal"></li>
+        </ul>
+    </footer>
+
+    <!-- Code principal JavaScript de l'application -->
+    <script src="<?= $wwwUrl ?>/js/main.js"></script>
+</body>
+</html>
